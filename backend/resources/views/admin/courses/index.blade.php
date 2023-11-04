@@ -10,7 +10,7 @@
                             <div class="card-header">
                                 <h5>Manage Courses</h5>
                                 <div class="card-header-right">
-                                    <a href="{{ url('admin/courses/create') }}" class="btn btn-outline-primary btn-sm">Add New Course</a>
+                                    {{-- <a href="{{ url('admin/courses/create') }}" class="btn btn-outline-primary btn-sm">Add New Course</a> --}}
                                 </div>
                             </div>
                             <div class="card-block p-b-0">
@@ -29,14 +29,14 @@
                                                 <td style="width: 3%">{{ $key+1 }}</td>
                                                 <td style="width: 85%">{{ $item->name }}</td>
                                                 <td style="width: 15%">
-                                                    <div class="dropdown-primary dropdown open">
+                                                    {{-- <div class="dropdown-primary dropdown open">
                                                         <button class="btn btn-primary btn-xs dropdown-toggle waves-effect waves-light" type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Action</button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                             <a class="dropdown-item waves-light waves-effect" href="{{ url('admin/courses', $item->id) }}/edit">Edit</a>
                                                             <div class="dropdown-divider"></div>
                                                             <a class="dropdown-item waves-light waves-effect" href="javascript:;" onclick="removeCourse({{ $item->id }})">Delete</a>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </td>
                                             </tr>
                                             @empty
