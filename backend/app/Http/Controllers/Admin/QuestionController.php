@@ -32,6 +32,10 @@ class QuestionController extends Controller
         $question->answer       = $request['answer'];
         $question->save();
 
+        if(isset($request['add_another'])) {
+            return redirect()->to('admin/questions/create')->with(['course_id' => $request['course_id'], 'category' => $request['category']]);
+        }
+
         return redirect()->to('admin/questions');
     }
 }
