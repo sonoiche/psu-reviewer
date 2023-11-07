@@ -30,9 +30,9 @@ Route::prefix('auth')->group(function () {
     Route::apiResource('register', RegisterController::class);
 });
 
+Route::apiResource('courses', CourseController::class);
 Route::middleware('auth:sanctum')->group( function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('questions', QuestionController::class);
     Route::apiResource('exams', ExamController::class);
-    Route::apiResource('courses', CourseController::class);
 });
