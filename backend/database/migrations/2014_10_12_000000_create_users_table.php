@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('mobile_number')->nullable();
             $table->enum('role', ['Admin', 'User'])->nullable();
+            $table->integer('course_id')->nullable();
             $table->string('photo')->nullable();
             $table->text('access_token')->nullable();
             $table->rememberToken();

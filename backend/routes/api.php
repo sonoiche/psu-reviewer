@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\ExamController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\UserController;
@@ -33,4 +34,5 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('questions', QuestionController::class);
     Route::apiResource('exams', ExamController::class);
+    Route::apiResource('courses', CourseController::class);
 });

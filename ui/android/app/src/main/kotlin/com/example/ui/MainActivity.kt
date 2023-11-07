@@ -1,4 +1,4 @@
-package com.example.ui
+package online.psureviewer.app
 
 import io.flutter.embedding.android.FlutterActivity
 

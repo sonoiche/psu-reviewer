@@ -48,7 +48,7 @@ class _SecondaryEducationState extends State<SecondaryEducation> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const QuizPage(courseId: 4, category: 'General')),
+                      MaterialPageRoute(builder: (context) => const QuizPage(courseId: 1, category: 'General')),
                     );
                   },
                   icon: const Icon(Icons.chevron_right),
@@ -84,7 +84,10 @@ class _SecondaryEducationState extends State<SecondaryEducation> {
                 const Spacer(),
                 TextButton.icon(
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const QuizPage(courseId: 1, category: 'Professional')),
+                    );
                   },
                   icon: const Icon(Icons.chevron_right),
                   label: const Text(''),
@@ -119,7 +122,10 @@ class _SecondaryEducationState extends State<SecondaryEducation> {
                 const Spacer(),
                 TextButton.icon(
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const QuizPage(courseId: 1, category: 'Specialization')),
+                    );
                   },
                   icon: const Icon(Icons.chevron_right),
                   label: const Text(''),

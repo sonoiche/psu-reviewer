@@ -32,6 +32,7 @@ class User {
   final String? email;
   final String? mobileNumber;
   final String? fullname;
+  final int? courseId;
 
   const User({
     required this.id,
@@ -40,7 +41,8 @@ class User {
     required this.lname,
     required this.email,
     required this.mobileNumber,
-    required this.fullname
+    required this.fullname,
+    required this.courseId
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -51,9 +53,16 @@ class User {
       lname: json['lname'],
       email: json['email'],
       mobileNumber: json['mobile_number'],
-      fullname: json['fullname']
+      fullname: json['fullname'],
+      courseId: json['course_id'] ?? 0
     );
   }
+}
+
+class Course {
+  final int? id;
+  final String? name;
+  Course(this.id, this.name);
 }
 
 class UserService {
@@ -170,6 +179,26 @@ class UserService {
       }
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  Future<List<Course>>  getCourseOptions() async {
+    final box = GetStorage();
+    var token = box.read('token');
+
+    var headers = {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer $token'};
+    final response = await http.get(Uri.parse('${ApiEndpoints.baseUrl}/courses'), headers: headers);
+
+    if(response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      final List<Course> courses = [];
+      for (var i = 0; i < data['data'].length; i++) {
+        final entry = data['data'][i];
+        courses.add(Course(entry['id'], entry['name']));
+      }
+      return courses;
+    } else {
+      throw Exception('Failed to fetch data.');
     }
   }
 }

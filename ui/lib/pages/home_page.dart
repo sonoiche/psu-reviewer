@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ui/models/user.dart';
 import 'package:ui/modules/nav_bar.dart';
-import 'package:ui/modules/recently_added.dart';
+// import 'package:ui/modules/recently_added.dart';
 import 'package:ui/pages/courses/nutrition_dietetics.dart';
 import 'package:ui/pages/courses/social_work.dart';
 import 'package:ui/pages/courses/technical_vocational.dart';
@@ -17,13 +18,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController? _tabController;
-
+  late Future<User> authuser;
   final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 5, initialIndex: 0, vsync: this);
+    authuser = UserService().getUser();
   }
 
   @override
@@ -43,75 +45,102 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 5.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'COURSES',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
+        child: FutureBuilder(
+          future: authuser,
+          builder: ((context, AsyncSnapshot snapshot) {
+            if(snapshot.hasData) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(height: 20),
+                  // Container(
+                  //   padding: const EdgeInsets.only(bottom: 20),
+                  //   child: TabBar(
+                  //     controller: _tabController,
+                  //     isScrollable: true,
+                  //     labelColor: Colors.blue,
+                  //     unselectedLabelColor: Colors.grey[600],
+                  //     indicator: const CircleTabIndicator(color: Colors.blue, radius: 4),
+                  //     tabs: const [
+                  //       Tab(child: Text('Secondary Education')),
+                  //       Tab(child: Text('Technical Vocational')),
+                  //       Tab(child: Text('Technology and Livelihood')),
+                  //       Tab(child: Text('Nutrition and Dietetics')),
+                  //       Tab(child: Text('Social Work')),
+                  //     ],
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   width: double.maxFinite,
+                  //   height: 250,
+                  //   child: TabBarView(
+                  //     controller: _tabController,
+                  //     children: const [
+                  //       SecondaryEducation(),
+                  //       TechnicalVocational(),
+                  //       TechnologyLivelihood(),
+                  //       NutritionDietetics(),
+                  //       SocialWork(),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  dashboardContent(snapshot.data!.courseId),
+
+                  const Divider(height: 10),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                  //   child: Align(
+                  //     alignment: Alignment.topLeft,
+                  //     child: Text(
+                  //       'RECENTLY ADDED',
+                  //       style: TextStyle(
+                  //         fontSize: 16.0,
+                  //         fontWeight: FontWeight.bold
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // Container(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  //   child: const RecentlyAdded(),
+                  // )
+                ]
+              );
+            } else if(snapshot.hasError) {
+              return Text('ERROR: ${snapshot.error}');
+            }
+
+            return SizedBox(
+              height: MediaQuery.of(context).size.height / 1.3,
+              child: const Center(
+                child: CircularProgressIndicator(),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                labelColor: Colors.blue,
-                unselectedLabelColor: Colors.grey[600],
-                indicator: const CircleTabIndicator(color: Colors.blue, radius: 4),
-                tabs: const [
-                  Tab(child: Text('Secondary Education')),
-                  Tab(child: Text('Technical Vocational')),
-                  Tab(child: Text('Technology and Livelihood')),
-                  Tab(child: Text('Nutrition and Dietetics')),
-                  Tab(child: Text('Social Work')),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: double.maxFinite,
-              height: 250,
-              child: TabBarView(
-                controller: _tabController,
-                children: const [
-                  SecondaryEducation(),
-                  TechnicalVocational(),
-                  TechnologyLivelihood(),
-                  NutritionDietetics(),
-                  SocialWork(),
-                ],
-              ),
-            ),
-            const Divider(height: 10),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'RECENTLY ADDED',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: const RecentlyAdded(),
-            )
-          ]
-        ),
+            );
+          })
+        )
       ),
     );
+  }
+
+  dashboardContent(courseId) {
+    if(courseId == 1) {
+      return const SecondaryEducation();
+    }
+    if(courseId == 2) {
+      return const TechnicalVocational();
+    }
+    if(courseId == 3) {
+      return const TechnologyLivelihood();
+    }
+    if(courseId == 4) {
+      return const NutritionDietetics();
+    }
+    if(courseId == 54) {
+      return const SocialWork();
+    }
+
+    return Container();
   }
 }
 

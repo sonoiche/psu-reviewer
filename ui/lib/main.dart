@@ -22,11 +22,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
-        splash: Icons.home, // this can be logo image
+        splash: 'assets/images/logo.jpg', // this can be logo image
+        splashIconSize: 200.0,
         duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
         nextScreen:  (token == null) ? const LoginPage() : const HomePage(),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
       ),
     );
   }

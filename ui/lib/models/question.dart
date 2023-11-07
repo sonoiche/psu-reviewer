@@ -47,6 +47,21 @@ class QuestionService {
     }
   }
 
+  Future getQuestionsCount(courseId, category) async {
+    final box = GetStorage();
+    var token = box.read('token');
+
+    var headers = {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer $token'};
+    final response = await http.get(Uri.parse('${ApiEndpoints.baseUrl}/questions/$courseId?category=$category'), headers: headers);
+
+    if(response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return data['data'].length;
+    } else {
+      throw Exception('Failed to fetch data.');
+    }
+  }
+
   Future storeUserExam({
     required int userId,
     required int questionId,

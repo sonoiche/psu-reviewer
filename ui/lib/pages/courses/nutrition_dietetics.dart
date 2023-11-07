@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/pages/quiz_page.dart';
 
 class NutritionDietetics extends StatefulWidget {
   const NutritionDietetics({super.key});
@@ -43,7 +44,21 @@ class _NutritionDieteticsState extends State<NutritionDietetics> {
                   ),
                 ),
                 const Spacer(),
-                const Icon(Icons.chevron_right, color: Colors.grey)
+                TextButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const QuizPage(courseId: 4, category: 'General')),
+                    );
+                  },
+                  icon: const Icon(Icons.chevron_right),
+                  label: const Text(''),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.grey.shade400,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.fromLTRB(15.0, 5.0, 5.0, 5.0)
+                  ),
+                )
               ],
             ),
             const SizedBox(height: 15),
@@ -67,7 +82,21 @@ class _NutritionDieteticsState extends State<NutritionDietetics> {
                   ),
                 ),
                 const Spacer(),
-                const Icon(Icons.chevron_right, color: Colors.grey)
+                TextButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const QuizPage(courseId: 4, category: 'Professional')),
+                    );
+                  },
+                  icon: const Icon(Icons.chevron_right),
+                  label: const Text(''),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.grey.shade400,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.fromLTRB(15.0, 5.0, 5.0, 5.0)
+                  ),
+                )
               ],
             ),
             const SizedBox(height: 15),
@@ -91,7 +120,21 @@ class _NutritionDieteticsState extends State<NutritionDietetics> {
                   ),
                 ),
                 const Spacer(),
-                const Icon(Icons.chevron_right, color: Colors.grey)
+                TextButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const QuizPage(courseId: 4, category: 'Specialization')),
+                    );
+                  },
+                  icon: const Icon(Icons.chevron_right),
+                  label: const Text(''),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.grey.shade400,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.fromLTRB(15.0, 5.0, 5.0, 5.0)
+                  ),
+                )
               ],
             ),
           ],

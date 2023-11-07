@@ -63,22 +63,22 @@ class _NavBarState extends State<NavBar> {
                     MaterialPageRoute(builder: (context) => const HomePage()),
                   )
                 ),
-                ListTile(
-                  leading: const Icon(Icons.book_outlined),
-                  title: const Text('Reviewers'),
-                  onTap: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Reviewer()),
-                  )
-                ),
-                ListTile(
-                  leading: const Icon(Icons.favorite),
-                  title: const Text('Favorites'),
-                  onTap: () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Favorite()),
-                  )
-                ),
+                // ListTile(
+                //   leading: const Icon(Icons.book_outlined),
+                //   title: const Text('Reviewers'),
+                //   onTap: () => Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => const Reviewer()),
+                //   )
+                // ),
+                // ListTile(
+                //   leading: const Icon(Icons.favorite),
+                //   title: const Text('Favorites'),
+                //   onTap: () => Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(builder: (context) => const Favorite()),
+                //   )
+                // ),
                 const Divider(),
                 ListTile(
                   leading: const Icon(Icons.policy),

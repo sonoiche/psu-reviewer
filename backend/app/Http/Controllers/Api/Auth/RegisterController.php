@@ -19,6 +19,7 @@ class RegisterController extends Controller
         $user->email            = $request['email'];
         $user->mobile_number    = $request['mobile_number'];
         $user->password         = bcrypt($request['password']);
+        $user->course_id        = $request['course_id'];
         $user->save();
 
         $userInfo               = User::find($user->id);
