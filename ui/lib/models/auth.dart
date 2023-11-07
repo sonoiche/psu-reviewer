@@ -20,7 +20,8 @@ class AuthController extends GetxController {
     required String lname,
     required String mobileNumber,
     required String email,
-    required String password
+    required String password,
+    required int courseId
   }) async {
     try {
       isLoading.value = true;
@@ -29,7 +30,8 @@ class AuthController extends GetxController {
         'lname': lname,
         'mobile_number': mobileNumber,
         'email': email,
-        'password': password
+        'password': password,
+        'course_id': courseId
       };
 
       var response = await http.post(

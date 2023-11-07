@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  String dropdownValue = '';
+  int dropdownValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: DropdownButton<String>(
+                      child: DropdownButton<int>(
                         isExpanded: true,
                         value: dropdownValue,
                         icon: const Icon(Icons.arrow_drop_down),
@@ -130,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 2,
                           color: Colors.grey,
                         ),
-                        onChanged: (String? value) {
+                        onChanged: (int? value) {
                           // This is called when the user selects an item.
                           setState(() {
                             dropdownValue = value!;
@@ -154,6 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           mobileNumber: mobileNumberController.text,
                           email: emailController.text,
                           password: passwordController.text,
+                          courseId: dropdownValue
                         );
                       },
                     ),
