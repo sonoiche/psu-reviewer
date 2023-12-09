@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  int dropdownValue = 0;
+  int dropdownValue = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +136,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             dropdownValue = value!;
                           });
                         },
-                        items: snapshot.data[0].map<DropdownMenuItem<String>>((item) =>
-                          DropdownMenuItem<String>(
+                        items: snapshot.data!.map<DropdownMenuItem<int>>((item) =>
+                          DropdownMenuItem<int>(
                             value: item.id,
                             child: Text(item.name)
                           )
@@ -213,7 +213,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  showDialogBox() => showCupertinoDialog<String>(
+  showDialogBox() => showCupertinoDialog<int>(
     context: context,
     builder: ((context) => CupertinoAlertDialog(
       title: const Text('No Connection'),

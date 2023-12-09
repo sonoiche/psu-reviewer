@@ -183,10 +183,7 @@ class UserService {
   }
 
   Future<List<Course>>  getCourseOptions() async {
-    final box = GetStorage();
-    var token = box.read('token');
-
-    var headers = {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer $token'};
+    var headers = {'Content-Type': 'application/json', 'Accept': 'application/json'};
     final response = await http.get(Uri.parse('${ApiEndpoints.baseUrl}/courses'), headers: headers);
 
     if(response.statusCode == 200) {

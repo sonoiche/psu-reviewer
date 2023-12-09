@@ -40,10 +40,18 @@ class ExamController extends Controller
         $category       = $request['category'];
         $course_id      = $request['course_id'];
 
-        $data['data']   = UserExam::where('user_id', $user_id)
+        $userexam       = UserExam::where('user_id', $user_id)
             ->where('course_id', $course_id)
             ->where('category', $category)
-            ->first();
+            ->where('status', 'Correct')
+            ->count();
+        $total          = Question::where('course_id', $course_id)->where('category', $category)->count();
+
+        $data['data']   = [
+            'total'         => $total,
+            'total_result'  => $userexam,
+            'exam_status'   => (($userexam / $total) * 100 >= 75) ? 'Passed' : 'Failed'
+        ];
 
         $data['statusCode'] = 200;
         return response()->json($data);

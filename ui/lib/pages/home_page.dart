@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     if(courseId == 4) {
       return const NutritionDietetics();
     }
-    if(courseId == 54) {
+    if(courseId == 5) {
       return const SocialWork();
     }
 
